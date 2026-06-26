@@ -1,8 +1,8 @@
 package frc.robot.subsystems;
 
-import frc.robot.commands.collector.Collector;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.collector.Collector;
 
 
 public class OI {

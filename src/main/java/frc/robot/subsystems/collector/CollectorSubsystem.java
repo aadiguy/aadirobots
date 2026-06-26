@@ -1,4 +1,4 @@
-package frc.robot.commands.collector;
+package frc.robot.subsystems.collector;
  
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.RobotContainer;

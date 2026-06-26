@@ -1,9 +1,9 @@
-package frc.robot.commands.collector;
+package frc.robot.subsystems.collector;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.collector.CollectorSubsystem.CollectorStateAngles;
-import frc.robot.commands.collector.CollectorSubsystem.CollectorStateSpeed;
+import frc.robot.subsystems.collector.CollectorSubsystem.CollectorStateAngles;
+import frc.robot.subsystems.collector.CollectorSubsystem.CollectorStateSpeed;
   
 public class Collector {
 
