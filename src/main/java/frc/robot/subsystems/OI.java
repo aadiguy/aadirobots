@@ -2,15 +2,18 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.collector.Collector;
 import frc.robot.subsystems.shooter.Shooter;
-
 
 public class OI {
     
     CommandXboxController driverController = new CommandXboxController(0);
+    CommandXboxController climberController = new CommandXboxController(1);
+    
     private Collector collector;
     private Shooter shooter;
+    private Climber climber;
 
     public void configureBindings() {
         driverController.leftBumper().onTrue(
@@ -28,5 +31,12 @@ public class OI {
         driverController.y().onTrue(shooter.low());
         driverController.b().onTrue(shooter.idle());
         driverController.leftTrigger().onTrue(shooter.shoot());
+
+        climberController.y().onTrue(climber.goUp());
+        climberController.a().onTrue(climber.goDown());
+        climberController.b().onTrue(climber.goStill());
+        climberController.x().onTrue(climber.goSpin());
+        climberController.povUp().onTrue(climber.increaseDistanceFudge());
+        climberController.povDown().onTrue(climber.descreaseDistanceFudge());
     }
 }
