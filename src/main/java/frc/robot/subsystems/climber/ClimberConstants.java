@@ -11,5 +11,6 @@ public class ClimberConstants {
     public static final AngularVelocity IDLE_ROTATION = RotationsPerSecond.of(0);
     public static final double MINIMUM_HEIGHT = Units.feetToMeters(1);
     public static final double MAXIMUM_HEIGHT = Units.feetToMeters(9.0);
+    public static final double  SAFE_HEIGHT = Units.feetToMeters(4.5);
 
 }
