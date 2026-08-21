@@ -30,7 +30,7 @@ public class CatapultSubsystem extends SubsystemBase {
         double feedForwardCalculation = armFeedforward.calculate(encoder.getDistance(), TargetPosition);
         double totalCalculation = pidControllerCalculation + feedForwardCalculation;
         armMotor.setVoltage(totalCalculation);
-    }
+    } 
     
     public void resitrictPosition(Angle angle) {
         
