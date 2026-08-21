@@ -38,6 +38,15 @@ public class RobotContainer {
       public static final int PIVOT_MOTOR = 5;
       public static final int FLYWHEEL_MOTOR = 6;
       public static final int PASSTHROUGH_MOTOR = 7;
+      public static final int RIGHT_CLIMBER_MOTOR = 8;
+      public static final int LEFT_CLIMBER_MOTOR = 9;
+      public static final int ARM_MOTOR = 10;
+      public static final int RELEASE_MOTOR = 11;
+      public static final int FORWARD_BACKWARD_DRIVE = 12;
+      public static final int LEFT_RIGHT_DRIVE = 13;
+      public static final int FORWARD_BACKWARD_ENCODER = 14;
+      public static final int LEFT_RIGHT_ENCODER = 15;
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

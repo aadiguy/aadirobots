@@ -28,7 +28,9 @@ public class ClimberSubsystem extends SubsystemBase {
     PIDController gamePiecePIDController = new PIDController(12.0, 13.2, 16.9);
     PIDController emptyPIDController = new PIDController(13.45, 14.857, 21.34);
     private final double targetPosition = 5.0;
-    private Distance distanceFudge; 
+    private Distance distanceFudge = Inches.of(12.0);
+    private double distanceManager = distanceFudge.in(Inches);
+
 
     public ClimberSubsystem() {
         leftClimberMotor.setControl(new Follower(RobotContainer.RIGHT_CLIMBER_MOTOR, MotorAlignmentValue.Aligned));
@@ -56,24 +58,15 @@ public class ClimberSubsystem extends SubsystemBase {
         rightClimberMotor.setControl(ClimberSpeeds.IDLE.controlRequest);
     }
 
-    public void jerkUp(double dooble) {
-        rightClimberMotor.setControl(ClimberDistance.UP.controlRequest);
+    public void jerkUporDown() {
 
-        if (dooble > ClimberConstants.MAXIMUM_HEIGHT) {
-             rightClimberMotor.setControl(ClimberDistance.UP.controlRequest);
+        if (distanceManager > ClimberConstants.MAXIMUM_HEIGHT || distanceManager < ClimberConstants.MINIMUM_HEIGHT) {
+             rightClimberMotor.setControl(ClimberDistance.SAFE.controlRequest);
         }
     }
 
     public void moveUpContinously() {
          rightClimberMotor.set(0.5);
-    }
-
-    public void jerkDown(double dooble) {
-        rightClimberMotor.setControl(ClimberDistance.DOWN.controlRequest);
-
-          if (dooble < ClimberConstants.MINIMUM_HEIGHT) {
-             rightClimberMotor.setControl(ClimberDistance.DOWN.controlRequest);
-        }
     }
 
     public void moveDownContinously() {
@@ -92,15 +85,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     public void updateDistanceFudge() {
         SmartDashboard.putNumber("Distance of the climber", distanceFudge.in(Inches));
-    }
-
-    @Override
-    public void periodic() {
-       rightClimberMotor.getPosition();
-     
-       if (rightClimberMotor.getPosition().getValueAsDouble() > 180) {
-              rightClimberMotor.setControl(ClimberDistance.DOWN.controlRequest);
-       }
+        distanceManager = distanceFudge.in(Inches);
     }
 
     enum ClimberSpeeds {
@@ -128,7 +113,8 @@ public class ClimberSubsystem extends SubsystemBase {
 
     enum ClimberDistance {
         DOWN(new MotionMagicVoltage(ClimberConstants.MINIMUM_HEIGHT), ClimberConstants.MINIMUM_HEIGHT),
-        UP(new MotionMagicVoltage(ClimberConstants.MAXIMUM_HEIGHT), ClimberConstants.MAXIMUM_HEIGHT );
+        UP(new MotionMagicVoltage(ClimberConstants.MAXIMUM_HEIGHT), ClimberConstants.MAXIMUM_HEIGHT ),
+        SAFE(new MotionMagicVoltage(ClimberConstants.SAFE_HEIGHT), ClimberConstants.SAFE_HEIGHT);
 
         final ControlRequest controlRequest;
         final double dooble;

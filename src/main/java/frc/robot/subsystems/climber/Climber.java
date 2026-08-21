@@ -15,7 +15,6 @@ public class Climber {
     private final Trigger isSpinning;
 
     public Climber() {
-        this.climber = climber;
 
         isUp = new Trigger(() -> climber.getClimberDistance().equals(ClimberDistance.UP));
         isDown = new Trigger(() -> climber.getClimberDistance().equals(ClimberDistance.DOWN));
